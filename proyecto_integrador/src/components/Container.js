@@ -13,7 +13,7 @@ class Container extends Component{
 
 
   componentDidMount(){
-      fetch("https://randomuser.me/api/?results=30")
+      fetch("https://randomuser.me/api/?results=1")
         .then(r => r.json())
         .then((resultado)=>{
           this.setState({users: resultado.results})
@@ -23,15 +23,21 @@ class Container extends Component{
 
   render(){
     return (            
-              <div class="Cartas">         
+              <div class="cartas">         
                 {
                   this.state.users.map((user)=>{
                     return(
                         <Cartas 
                           name={ user.name.first }
                           lastname= { user.name.last }
+                          picture={ user.picture.large }
+                          email= {user.email}
+                          fnac={ user.dob.date}
+                          edad= {user.dob.age}
+                          direccion= {user.location}
+                          register={user.registered.date}
+                          telefono= {user.phone}
                           color="white"
-                        
                         
                         />
                     )
