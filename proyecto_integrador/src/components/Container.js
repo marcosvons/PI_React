@@ -13,21 +13,42 @@ class Container extends Component{
 
 
   componentDidMount(){
-      fetch("https://randomuser.me/api/?results=1")
+      fetch("https://randomuser.me/api/?results=10")
         .then(r => r.json())
         .then((resultado)=>{
           this.setState({users: resultado.results})
         })
-}
+        .catch((e)=>{console.log(e)})
+    }
 
+    cambiarNumeroTarjetas=(numero)=>{
+        fetch("https://randomuser.me/api/?results="+ numero )
+            .then(r => r.json())
+            .then((resultados)=>{
+                this.setState({users: resultados.results})
+            })
+            .catch((e)=>{console.log(e)})
+    }   
+
+    eliminarTarjeta=(key)=>{
+        let tarjetasRestantes=this.state.users.filter((tarjeta)=>{
+            return tarjeta.login.uuid !== key;
+        })
+        this.setState({users: tarjetasRestantes })
+    }
 
   render(){
-    return (            
-              <div class="cartas">         
+    return (
+            <div className='card_container'>       
+              <div class="cartas">      
+                <input type='number' placeholder='Nuevo numero tarjetas' class='numeroTarjetas'></input>
+                <input type='submit' value='Submit' onClick={()=>this.cambiarNumeroTarjetas(document.querySelector('.numeroTarjetas').value)}></input>   
                 {
                   this.state.users.map((user)=>{
                     return(
                         <Cartas 
+                          key={ user.login.uuid} 
+                          id= {user.login.uuid}
                           name={ user.name.first }
                           lastname= { user.name.last }
                           picture={ user.picture.large }
@@ -38,12 +59,15 @@ class Container extends Component{
                           register={user.registered.date}
                           telefono= {user.phone}
                           color="white"
+                          onDelete={this.eliminarTarjeta.bind(this)}
                         
                         />
                     )
                   })
                 }
+                
               </div>
+            </div>
     );
   }
 }

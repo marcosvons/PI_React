@@ -10,15 +10,20 @@ class Cartas extends Component {
     }
 
     girarTarjeta = () =>{
-        var card=document.querySelector('.card-inner');
-        card.classList.toggle('is-flipped');
+        var card=document.querySelectorAll('.card-inner');
+        card.forEach((card)=>{
+            card.classList.toggle('is-flipped');
+        })
     }
 
     render(){
         return(
-            <div class='card-inner' onClick={()=>this.girarTarjeta()}>
+            <div class='card-inner mySlides fade'>
                 <div class='frente-card card__face'>
-                    <div class='card-content'>
+                    <div class='card-content' onClick={this.girarTarjeta.bind(this)}>
+                        <div className='buttonDelete'>
+                            <button className='deleteCard' onClick={()=>this.props.onDelete.bind(this, this.props.id)}>X</button>
+                        </div>
                         <div class='card-header'>
                             <img src={this.props.picture} class='imagen'></img>
                             <h2>{ this.props.name }</h2>
