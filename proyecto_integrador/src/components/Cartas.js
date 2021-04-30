@@ -18,13 +18,13 @@ class Cartas extends Component {
 
     render(){
         return(
-            <div class='card-inner mySlides fade'>
+            <div class='card-inner'>
                 <div class='frente-card card__face'>
-                    <div class='card-content' onClick={this.girarTarjeta.bind(this)}>
+                    <div class='card-content' >
                         <div className='buttonDelete'>
-                            <button className='deleteCard' onClick={()=>this.props.onDelete.bind(this, this.props.id)}>X</button>
+                            <button className='deleteCard' onClick={this.props.onDelete.bind(this, this.props.id)}>X</button>
                         </div>
-                        <div class='card-header'>
+                        <div class='card-header' onClick={this.girarTarjeta.bind(this)}>
                             <img src={this.props.picture} class='imagen'></img>
                             <h2>{ this.props.name }</h2>
                             <h2>{this.props.lastname}</h2>

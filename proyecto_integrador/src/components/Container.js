@@ -37,12 +37,42 @@ class Container extends Component{
         this.setState({users: tarjetasRestantes })
     }
 
+    filtrarTarjetas=()=>{
+        var filtroNombre=document.querySelector('.filterByName').value
+        var filtroApellido=document.querySelector('.filterByLastname').value
+        var filtroEdad=document.querySelector('.filterByAge').value
+        if (filtroNombre!==''){
+            let resultadoBusqueda = this.state.users.filter((user)=>{
+                return user.name.first.toLowerCase()===filtroNombre.toLowerCase();
+            })
+            this.setState({users:resultadoBusqueda})
+        }
+        else if (filtroApellido!==''){
+            let resultadoBusqueda= this.state.users.filter((user)=>{
+                return user.name.last.toLowerCase() === filtroApellido.toLowerCase();
+            })
+            this.setState({users:resultadoBusqueda})
+        }
+        else if (filtroEdad !== ''){
+            let resultadoBusqueda = this.state.users.filter((user)=>{
+                return user.dob.age === parseInt(filtroEdad);
+            })
+            this.setState({users:resultadoBusqueda})
+        }
+    }
+
   render(){
     return (
             <div className='card_container'>       
-              <div class="cartas">      
+              <div class="cartas">    
+                <div class='controles'>  
                 <input type='number' placeholder='Nuevo numero tarjetas' class='numeroTarjetas'></input>
-                <input type='submit' value='Submit' onClick={()=>this.cambiarNumeroTarjetas(document.querySelector('.numeroTarjetas').value)}></input>   
+                <input type='submit' value='Fetch' onClick={()=>this.cambiarNumeroTarjetas(document.querySelector('.numeroTarjetas').value)}></input>  
+                <input type='text' placeholder='Name' class='filterByName'></input>
+                <input type='text' placeholder='Lastname' class='filterByLastname'></input>
+                <input type='text' placeholder='Age' class='filterByAge'></input>
+                <input type='button' value='Filter' onClick={this.filtrarTarjetas.bind(this)}></input>
+                </div>
                 {
                   this.state.users.map((user)=>{
                     return(
@@ -58,7 +88,6 @@ class Container extends Component{
                           direccion= {user.location}
                           register={user.registered.date}
                           telefono= {user.phone}
-                          color="white"
                           onDelete={this.eliminarTarjeta.bind(this)}
                         
                         />

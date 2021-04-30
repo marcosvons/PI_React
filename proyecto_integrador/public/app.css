@@ -17,7 +17,7 @@
     min-height: 100vh;
   }
 
-  .card__container {
+  .container {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -41,6 +41,7 @@
     transform-style: preserve-3d;
     cursor: pointer;
     position: relative;
+    margin: 10px;
   }
 
 .card-inner.is-flipped {
@@ -155,4 +156,17 @@
     border-radius: 10px;
     background-color: linear-gradient(to bottom right, var(--primary), var(--secondary));
     z-index: 3;
+  }
+
+  .controles {
+      display:flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      align-content: space-between;
+  }
+
+  div.controles input{
+      width: 40%;
   }
