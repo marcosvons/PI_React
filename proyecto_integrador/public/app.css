@@ -2,7 +2,7 @@
     --primary: #FFCE00;
     --secondary: #FE4880;
     --dark: #212121;
-    --light: #F3F3F3;
+    --light: #f3f3f3b7;
   }
   
   * {
@@ -15,6 +15,7 @@
     font-family: montserrat, sans-serif;
     width: 100%;
     min-height: 100vh;
+    background-color: rgba(0,0,0,0.9);
   }
 
   .container {
@@ -41,7 +42,7 @@
     transform-style: preserve-3d;
     cursor: pointer;
     position: relative;
-    margin: 10px;
+    margin-bottom: 25px;
   }
 
 .card-inner.is-flipped {
@@ -165,8 +166,24 @@
       justify-content: space-between;
       align-items: center;
       align-content: space-between;
+      width: 400px;
+      margin: 0 auto;
   }
 
   div.controles input{
       width: 40%;
+      border-radius: 10px;
+    align-content: center;
+    padding: 3px;
+  }
+
+  header h1{
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  header {
+      background: linear-gradient(to bottom right, var(--primary), var(--secondary));
   }

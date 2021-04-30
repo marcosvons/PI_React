@@ -7,6 +7,9 @@ import Footer from "./components/Footer";
 function App (){
   return(
     <div>
+      <header>
+        <h1>SwipeIT</h1>
+      </header>
       <Container />
       <Footer />
     </div>
